@@ -20,7 +20,7 @@ app.get("/products", (req, res)=>{
 )
 app.post("/products", (req, res)=>{
     const productData = req.body // initialize a variable to get data from json body
-    if(!productData || !productData.productID || !productData.productName || !productData.productPrice || !productData.productQty) {
+    if(!productData || !productData.productId || !productData.name || !productData.price || !productData.quantity) {
         return res.status(400).json({error:"Invalid Data"})
     }
     datastore.products.push(productData);
