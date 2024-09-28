@@ -1,17 +1,23 @@
-import express, { json } from 'express'
+import express from 'express';
+// const express = require('express')
+// create object of express
+const app = express();
+// port number on which you want to run the application
+app.use(express.json());
+const port = 3000;
+// res:request; res:responde
+// app.get(), one of the initial five methods
+// node is a self server application
+// request for /hello, so you need to add /hello at the end of hostaddress
+app.get('/hello', (req, res)=>{
+    res.json({"Key": "Hello World"})
 
-const app = express()
-app.use(express, json)
+}) 
+app.get('/first', (req, res)=>{
+    res.json({"Key": "Hello World"})
 
-let datastore = {
-    products:[]
-}
-
-// store the data
-app.get("/products", (req, res)=>{
-    res.json(datastore.products);
-})
-
-app.listen(3000, ()=>{
-    console.log("Server is listening on port 3000")
+}) 
+ 
+app.listen(port, ()=>{
+    console.log(`Server is running on ${port}`)
 })
