@@ -50,12 +50,23 @@ app.post("/product", (req, res)=>{
 
 })
 // parameter name can be anything, in this case, i call it productId
-app.delete("/products/:productId", (req,res) => { // it shpuld be products? with id? //Correct format: DELETE http://localhost/products/id
+/*app.delete("/products/:productId", (req,res) => { // it shpuld be products? with id? //Correct format: DELETE http://localhost/products/id
     const proID = req.params // get the id from the params
     if(proID === undifined) {
         return res.status(418).json({error:"No such product!"});
     }
     datastore.products.pop(req.proID)
+})*/
+// delete by id is working
+app.delete("/products/:productId", (req,res) => {
+    const product = datastore.products.find(c => c.productId === parseInt(req.params.productId))
+    if (!product) {
+        res.status(404).send('The product with given id is not found')
+    }
+    else {
+        datastore.products.pop(product)
+        res.json(datastore.products);
+    }
 })
 
  
